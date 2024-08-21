@@ -1,0 +1,421 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>인사 금지</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: Satoshi, sans-serif;
+        background-color: #ffffff;
+      }
+
+      .container {
+        padding: 40px 20px 20px 20px;
+      }
+
+      h1 {
+        font-size: clamp(3rem, 6vw + 1rem, 5rem);
+        margin: 0;
+        color: #000000;
+        display: inline-block;
+      }
+
+      .strikethrough {
+        color: black;
+        text-decoration: line-through;
+        text-decoration-color: red;
+        display: inline-block;
+      }
+
+      h2 {
+        font-size: clamp(1.5rem, 3vw + 0.5rem, 2.5rem);
+        margin-top: -5px;
+        color: #555555;
+        font-weight: lighter;
+        opacity: 0.8;
+      }
+
+      .cursor {
+        font-size: clamp(3rem, 6vw + 1rem, 5rem);
+        margin-left: 5px;
+        color: #000000;
+        display: inline-block;
+        animation: blink 0.75s ease-in-out infinite;
+      }
+
+      .quote {
+        font-weight: 300;
+        font-size: clamp(1rem, 2vw + 0.5rem, 1.5rem);
+        color: #555555;
+        margin-top: 20px;
+        font-style: italic;
+      }
+
+      .quote em {
+        font-style: italic;
+      }
+
+      .dont-do-this {
+        margin-top: 40px;
+        font-size: 1.5rem;
+        display: flex;
+        align-items: center;
+      }
+
+      .dont-do-this span {
+        color: #ff0000;
+        font-weight: bold;
+        margin-right: 10px;
+      }
+
+      .dont-do-this-text {
+        color: #000000;
+        font-weight: bold;
+      }
+
+      .content-wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        flex-wrap: wrap;
+        margin-top: 20px;
+      }
+
+      .card {
+        background-color: #ffffff;
+        border-radius: 8px;
+        padding: 8px;
+        margin-top: 10px;
+        box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
+        width: 100%;
+        max-width: 45%;
+        box-sizing: border-box;
+      }
+
+      .message {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 8px;
+        padding-top: 3px;
+      }
+
+      .profile-pic-butcher {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-image: url('butcher.jpg');
+        background-size: cover;
+        margin-right: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .profile-pic-hughie {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-image: url('hughie.jpg');
+        background-size: cover;
+        margin-right: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .message-header {
+        display: flex;
+        align-items: center;
+      }
+
+      .message-name {
+        font-weight: bold;
+        margin-right: 5px;
+      }
+
+      .message-time {
+        opacity: 0.6;
+        font-size: 0.9rem;
+      }
+
+      .message-text {
+        font-size: 1rem;
+        color: #333333;
+        margin-top: 4px;
+      }
+
+      .explanation {
+        font-size: 1rem;
+        color: #555555;
+        margin-top: 20px;
+        max-width: 45%;
+        box-sizing: border-box;
+      }
+
+      .explanation-bold {
+        font-weight: bold;
+      }
+
+      .faded-text {
+        opacity: 0.75;
+      }
+
+      @media (max-width: 770px) {
+        .card, .explanation {
+          max-width: 100%;
+        }
+      }
+
+      @keyframes blink {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0; }
+      }
+
+      .paused {
+        animation: none;
+      }
+
+      .try-this {
+        margin-top: 60px;
+        font-size: 1.5rem;
+        display: flex;
+        align-items: center;
+      }
+
+      .try-this span {
+        color: #00b894;
+        font-weight: bold;
+        margin-right: 10px;
+      }
+
+      .try-this-text {
+        color: #000000;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>인사 <span class="strikethrough" id="changing-text">안녕하세요</span><span class="cursor" id="cursor">|</span></h1>
+      <h2>채팅에서 "안녕하세요"만 말하지 마세요</h2>
+      <p class="quote">전화로 누군가에게 전화를 걸고 " <em>안녕하세요!</em> "라고 말한 후 대기 모드로 두는 것을 상상해 보세요... 🤦‍♀️</p>
+
+      <div class="dont-do-this">
+        <span>❌</span>
+        <span class="dont-do-this-text">이렇게 하지 마세요</span>
+      </div>
+
+      <div class="content-wrapper">
+        <div class="card">
+          <div class="message">
+            <div class="profile-pic-butcher"></div>
+            <div>
+              <div class="message-header">
+                <span class="message-name">빌리</span>
+                <span class="message-time">10:15</span>
+              </div>
+              <div class="message-text">안녕?</div>
+            </div>
+          </div>
+          <div class="message">
+            <div class="profile-pic-hughie"></div>
+            <div>
+              <div class="message-header">
+                <span class="message-name">휴이</span>
+                <span class="message-time">10:19</span>
+              </div>
+              <div class="message-text">..?</div>
+            </div>
+          </div>
+          <div class="message">
+            <div class="profile-pic-butcher"></div>
+            <div>
+              <div class="message-header">
+                <span class="message-name">빌리</span>
+                <span class="message-time">10:21</span>
+              </div>
+              <div class="message-text">스타라이트 랠리는 언제야?</div>
+            </div>
+          </div>
+          <div class="message">
+            <div class="profile-pic-hughie"></div>
+            <div>
+              <div class="message-header">
+                <span class="message-name">휴이</span>
+                <span class="message-time">10:22</span>
+              </div>
+              <div class="message-text">오, 10:30이야 친구</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="explanation">
+          빌리는 더 빨리 답을 얻을 수 있었고 휴이를 기다리게 할 필요가 없었을 수도 있습니다. 사실, 휴이는 바로 질문에 대해 생각하기 시작할 수 있었을 것입니다!<br><br>
+          이렇게 하는 사람들은 보통 요청에 바로 뛰어들지 않고, 대면이나 전화로 하는 것처럼 예의를 갖추려고 합니다 - 그리고 그것은 훌륭합니다! 하지만 지금은 2024년이고, 채팅은 그 중 하나가 아닙니다. 대부분의 사람들에게 타이핑은 말하는 것보다 훨씬 느립니다. 따라서 최선의 의도가 있더라도 실제로는 다른 사람이 질문을 형성할 때까지 기다리게 하는 것뿐이며, 이는 생산성의 손실을 초래합니다(그리고 약간 짜증을 유발합니다).<br><br>
+          다음과 같은 경우에도 마찬가지입니다:<br>
+          <span class="faded-text">❌ "안녕하세요, 계신가요?"<br>
+          ❌ "안녕 네이먼 - 간단한 질문이야."<br>
+          ❌ "잠깐 시간 있어요?"<br>
+          ❌ "yt?"<br>
+          ❌ "핑"<br>
+          ❌ 등등.</span><br><br>
+          <span class="explanation-bold">그냥 질문하세요! 😫</span>
+        </div>
+      </div>
+
+      <div class="try-this">
+        <span>✅</span>
+        <span class="try-this-text">대신 이렇게 해보세요</span>
+      </div>
+
+      <div class="content-wrapper">
+        <div class="card">
+          <div class="message">
+            <div class="profile-pic-butcher"></div>
+            <div>
+              <div class="message-header">
+                <span class="message-name">부처</span>
+                <span class="message-time">10:15</span>
+              </div>
+              <div class="message-text">안녕! 스타라이트 랠리는 몇 시야?</div>
+            </div>
+          </div>
+          <div class="message">
+            <div class="profile-pic-hughie"></div>
+            <div>
+              <div class="message-header">
+                <span class="message-name">휴이</span>
+                <span class="message-time">10:17</span>
+              </div>
+              <div class="message-text">안녕 사랑 <3 10:30이야</div>
+            </div>
+          </div>
+          <div class="message">
+            <div class="profile-pic-butcher"></div>
+            <div>
+              <div class="message-header">
+                <span class="message-name">부처</span>
+                <span class="message-time">10:19</span>
+              </div>
+              <div class="message-text">고마워! 그때 보자</div>
+            </div>
+          </div>
+          <div class="message">
+            <div class="profile-pic-hughie"></div>
+            <div>
+              <div class="message-header">
+                <span class="message-name">휴이</span>
+                <span class="message-time">10:20</span>
+              </div>
+              <div class="message-text">👌 문제 없어</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="explanation">
+          단순히 "안녕하세요"라고 말하고 질문하는 것이 다소 무례하다고 느껴지면, 원하시는 만큼 예의를 갖추어 메시지를 시작할 수 있습니다.<br><br>
+          예를 들어:<br>
+          <span class="faded-text">"안녕 친구, 뭐해? 그거 언제 마감인지 알아?"<br>
+          "안녕하세요! 잘 지내시죠? 최신 자료 좀 받을 수 있을까요?"<br>
+          "안녕, 바쁘지 않으면 그 NFR 업데이트해줄 수 있어?"<br>
+          등등.</span><br><br>
+          사소한 일처럼 보일 수도 있지만, 초기 인사 응답을 받기 전에 질문을 하면 비동기 통신도 가능합니다. 상대방이 자리에 없고 돌아오기 전에 떠나면 "안녕하세요"라는 말만 보고 무엇을 놓쳤는지 궁금해하는 대신 여전히 질문에 답할 수 있습니다.<br><br>
+          제대로 하면 모두가 행복합니다! 🎉
+        </div>
+      </div>
+    </div>
+
+    <Layout />
+    <script>
+      const changingText = document.getElementById('changing-text');
+      const cursor = document.getElementById('cursor');
+      const greetings = [
+        "안녕하세요",
+        "안녕",
+        "좋은 아침",
+        "좋은 오후",
+        "안녕하십니까",
+        "반갑습니다",
+        "어떻게 지내?",
+        "여보세요",
+        "하이"
+      ];
+      let currentIndex = 0;
+      let intervalId;
+      let removeInterval;
+      let addInterval;
+      let isPageHidden = false;
+
+      function removeText(text, callback) {
+        let length = text.length;
+        removeInterval = setInterval(() => {
+          if (length > 0) {
+            changingText.textContent = text.slice(0, length - 1);
+            length--;
+          } else {
+            clearInterval(removeInterval);
+            callback();
+          }
+        }, 75);
+      }
+
+      function addText(text, callback) {
+        let length = 0;
+        addInterval = setInterval(() => {
+          if (length < text.length) {
+            changingText.textContent = text.slice(0, length + 1);
+            length++;
+          } else {
+            clearInterval(addInterval);
+            callback();
+          }
+        }, 75);
+      }
+
+      function changeText() {
+        cursor.classList.add('paused');
+        let currentText = greetings[currentIndex];
+        currentIndex = (currentIndex + 1) % greetings.length;
+        let newText = greetings[currentIndex];
+
+        removeText(currentText, () => {
+          addText(newText, () => {
+            cursor.classList.remove('paused');
+          });
+        });
+      }
+
+      function startTextSwap() {
+        intervalId = setInterval(changeText, 3750);
+      }
+
+      function pauseTextSwap() {
+        clearInterval(intervalId);
+        clearInterval(removeInterval);
+        clearInterval(addInterval);
+      }
+
+      function handleVisibilityChange() {
+        if (document.hidden) {
+          pauseTextSwap();
+          isPageHidden = true;
+        } else if (isPageHidden) {
+          isPageHidden = false;
+          startTextSwap();
+        }
+      }
+
+      document.addEventListener('visibilitychange', handleVisibilityChange);
+
+      setTimeout(() => {
+        changeText();
+        startTextSwap();
+      }, 3000);
+    </script>
+  </body>
+</html>
