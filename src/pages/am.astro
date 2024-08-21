@@ -1,0 +1,421 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<html lang="hy">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ոչ բարև</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: Satoshi, sans-serif;
+        background-color: #ffffff;
+      }
+
+      .container {
+        padding: 40px 20px 20px 20px;
+      }
+
+      h1 {
+        font-size: clamp(3rem, 6vw + 1rem, 5rem);
+        margin: 0;
+        color: #000000;
+        display: inline-block;
+      }
+
+      .strikethrough {
+        color: black;
+        text-decoration: line-through;
+        text-decoration-color: red;
+        display: inline-block;
+      }
+
+      h2 {
+        font-size: clamp(1.5rem, 3vw + 0.5rem, 2.5rem);
+        margin-top: -5px;
+        color: #555555;
+        font-weight: lighter;
+        opacity: 0.8;
+      }
+
+      .cursor {
+        font-size: clamp(3rem, 6vw + 1rem, 5rem);
+        margin-left: 5px;
+        color: #000000;
+        display: inline-block;
+        animation: blink 0.75s ease-in-out infinite;
+      }
+
+      .quote {
+        font-weight: 300;
+        font-size: clamp(1rem, 2vw + 0.5rem, 1.5rem);
+        color: #555555;
+        margin-top: 20px;
+        font-style: italic;
+      }
+
+      .quote em {
+        font-style: italic;
+      }
+
+      .dont-do-this {
+        margin-top: 40px;
+        font-size: 1.5rem;
+        display: flex;
+        align-items: center;
+      }
+
+      .dont-do-this span {
+        color: #ff0000;
+        font-weight: bold;
+        margin-right: 10px;
+      }
+
+      .dont-do-this-text {
+        color: #000000;
+        font-weight: bold;
+      }
+
+      .content-wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        flex-wrap: wrap;
+        margin-top: 20px;
+      }
+
+      .card {
+        background-color: #ffffff;
+        border-radius: 8px;
+        padding: 8px;
+        margin-top: 10px;
+        box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
+        width: 100%;
+        max-width: 45%;
+        box-sizing: border-box;
+      }
+
+      .message {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 8px;
+        padding-top: 3px;
+      }
+
+      .profile-pic-butcher {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-image: url('butcher.jpg');
+        background-size: cover;
+        margin-right: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .profile-pic-hughie {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-image: url('hughie.jpg');
+        background-size: cover;
+        margin-right: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .message-header {
+        display: flex;
+        align-items: center;
+      }
+
+      .message-name {
+        font-weight: bold;
+        margin-right: 5px;
+      }
+
+      .message-time {
+        opacity: 0.6;
+        font-size: 0.9rem;
+      }
+
+      .message-text {
+        font-size: 1rem;
+        color: #333333;
+        margin-top: 4px;
+      }
+
+      .explanation {
+        font-size: 1rem;
+        color: #555555;
+        margin-top: 20px;
+        max-width: 45%;
+        box-sizing: border-box;
+      }
+
+      .explanation-bold {
+        font-weight: bold;
+      }
+
+      .faded-text {
+        opacity: 0.75;
+      }
+
+      @media (max-width: 770px) {
+        .card, .explanation {
+          max-width: 100%;
+        }
+      }
+
+      @keyframes blink {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0; }
+      }
+
+      .paused {
+        animation: none;
+      }
+
+      .try-this {
+        margin-top: 60px;
+        font-size: 1.5rem;
+        display: flex;
+        align-items: center;
+      }
+
+      .try-this span {
+        color: #00b894;
+        font-weight: bold;
+        margin-right: 10px;
+      }
+
+      .try-this-text {
+        color: #000000;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>ոչ <span class="strikethrough" id="changing-text">բարև</span><span class="cursor" id="cursor">|</span></h1>
+      <h2>խնդրում ենք չասել միայն բարև չաթում</h2>
+      <p class="quote">Պատկերացրեք, որ զանգահարում եք ինչ-որ մեկին հեռախոսով, ասում եք <em>բարև!</em> և հետո թողնում եք նրանց սպասել... 🤦‍♀️</p>
+
+      <div class="dont-do-this">
+        <span>❌</span>
+        <span class="dont-do-this-text">Մի արեք սա</span>
+      </div>
+
+      <div class="content-wrapper">
+        <div class="card">
+          <div class="message">
+            <div class="profile-pic-butcher"></div>
+            <div>
+              <div class="message-header">
+                <span class="message-name">Բիլի</span>
+                <span class="message-time">10:15</span>
+              </div>
+              <div class="message-text">բարևվվ</div>
+            </div>
+          </div>
+          <div class="message">
+            <div class="profile-pic-hughie"></div>
+            <div>
+              <div class="message-header">
+                <span class="message-name">Հյուի</span>
+                <span class="message-time">10:19</span>
+              </div>
+              <div class="message-text">..?</div>
+            </div>
+          </div>
+          <div class="message">
+            <div class="profile-pic-butcher"></div>
+            <div>
+              <div class="message-header">
+                <span class="message-name">Բիլի</span>
+                <span class="message-time">10:21</span>
+              </div>
+              <div class="message-text">Երբ է սկսվում Սթարլայթ ցույցը?</div>
+            </div>
+          </div>
+          <div class="message">
+            <div class="profile-pic-hughie"></div>
+            <div>
+              <div class="message-header">
+                <span class="message-name">Հյուի</span>
+                <span class="message-time">10:22</span>
+              </div>
+              <div class="message-text">օ, 10:30 ընկեր</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="explanation">
+          Նկատեք, որ Բիլին կարող էր ստանալ իր պատասխանը մի քանի րոպե շուտ և չէր ստիպի Հյուիին սպասել։ Փաստորեն, Հյուին կարող էր անմիջապես սկսել մտածել հարցի շուրջ։<br><br>
+          Նրանք, ովքեր դա անում են, սովորաբար փորձում են լինել քաղաքավարի՝ չսկսելով հարցումը, ինչպես անձամբ կամ հեռախոսով կանեին - և դա հիանալի է։ Բայց դա 2024 թվականն է, և չաթը դրանցից ոչ մեկն է։ Մարդկանց մեծամասնության համար տպելը շատ ավելի դանդաղ է, քան խոսելը։ Այսպիսով, չնայած ձեր լավագույն մտադրություններին, դուք իրականում պարզապես ստիպում եք մյուս անձին սպասել, մինչև դուք կձևակերպեք ձեր հարցը, ինչը նշանակում է <span class="explanation-bold">արտադրողականության կորուստ</span> (և մի փոքր նյարդայնացնող է)։<br><br>
+          Նույնը վերաբերում է՝<br>
+          <span class="faded-text">❌ "Բարև, մոտակայքում ես?"<br>
+          ❌ "Բարև Նյուման - արագ հարց."<br>
+          ❌ "Ժամանակ ունե՞ս մի վայրկյան."<br>
+          ❌ "yt?"<br>
+          ❌ "ping"<br>
+          ❌ և այլն:</span><br><br>
+          <span class="explanation-bold">Ուղղակի հարցրու հարցը! 😫</span>
+        </div>
+      </div>
+
+      <div class="try-this">
+        <span>✅</span>
+        <span class="try-this-text">Փորձեք սա փոխարենը</span>
+      </div>
+
+      <div class="content-wrapper">
+        <div class="card">
+          <div class="message">
+            <div class="profile-pic-butcher"></div>
+            <div>
+              <div class="message-header">
+                <span class="message-name">Բուչեր</span>
+                <span class="message-time">10:15</span>
+              </div>
+              <div class="message-text">բարև! Ո՞ր ժամին էր Սթարլայթ ցույցը:</div>
+            </div>
+          </div>
+          <div class="message">
+            <div class="profile-pic-hughie"></div>
+            <div>
+              <div class="message-header">
+                <span class="message-name">Հյուի</span>
+                <span class="message-time">10:17</span>
+              </div>
+              <div class="message-text">բարև սիրելի <3 դա 10:30-ին է:</div>
+            </div>
+          </div>
+          <div class="message">
+            <div class="profile-pic-butcher"></div>
+            <div>
+              <div class="message-header">
+                <span class="message-name">Բուչեր</span>
+                <span class="message-time">10:19</span>
+              </div>
+              <div class="message-text">շնորհակալություն! կտեսնվենք այնտեղ</div>
+            </div>
+          </div>
+          <div class="message">
+            <div class="profile-pic-hughie"></div>
+            <div>
+              <div class="message-header">
+                <span class="message-name">Հյուի</span>
+                <span class="message-time">10:20</span>
+              </div>
+              <div class="message-text">👌 ոչ մի խնդիր</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="explanation">
+          Եթե կարծում եք, որ "Բարև" ասելն ու հարցը տալը մի փոքր կոպիտ է, ապա կարող եք ձեր հաղորդագրությունը նախ ասել այնքան ձևական, որքան ցանկանում եք։<br><br>
+          Օրինակ՝<br>
+          <span class="faded-text">"Բարև մարդ, ինչպե՞ս ես: Եվ ի դեպ, գիտե՞ս երբ է այդ բանն սպասվում?"<br>
+          "Բարև! Հուսով եմ՝ լավ ես: Ես որոնում եմ վերջին տարբերակը, երբ ազատ ես :)"<br>
+          "Բարև, եթե զբաղված չես, կարո՞ղ ես թարմացնել NFR-ները?"<br>
+          և այլն:</span><br><br>
+          Թվում է, որ դա պարզ բան է, բայց նախքան այդ նախնական ողջույնը ստանալը հարցնելը նույնպես թույլ է տալիս ասինքրոն հաղորդակցություն։ Եթե մյուս անձը բացակայում է, և դու հեռանում ես, նախքան նա կվերադառնա, նա դեռ կարող է պատասխանել ձեր հարցին՝ առանց պարզապես նայելու "Բարև"-ին և մտածելով, թե ինչ է կորցրել:<br><br>
+          Երբ դա ճիշտ է արվում - բոլորը երջանիկ են! 🎉
+        </div>
+      </div>
+    </div>
+
+    <Layout />
+    <script>
+      const changingText = document.getElementById('changing-text');
+      const cursor = document.getElementById('cursor');
+      const greetings = [
+        "բարև",
+        "բարև ձեզ",
+        "բարև ձեզ",
+        "բարի լույս",
+        "բարի օր",
+        "բարի երեկո",
+        "ողջույն",
+        "հի",
+        "բարև մարդ"
+      ];
+      let currentIndex = 0;
+      let intervalId;
+      let removeInterval;
+      let addInterval;
+      let isPageHidden = false;
+
+      function removeText(text, callback) {
+        let length = text.length;
+        removeInterval = setInterval(() => {
+          if (length > 0) {
+            changingText.textContent = text.slice(0, length - 1);
+            length--;
+          } else {
+            clearInterval(removeInterval);
+            callback();
+          }
+        }, 75);
+      }
+
+      function addText(text, callback) {
+        let length = 0;
+        addInterval = setInterval(() => {
+          if (length < text.length) {
+            changingText.textContent = text.slice(0, length + 1);
+            length++;
+          } else {
+            clearInterval(addInterval);
+            callback();
+          }
+        }, 75);
+      }
+
+      function changeText() {
+        cursor.classList.add('paused');
+        let currentText = greetings[currentIndex];
+        currentIndex = (currentIndex + 1) % greetings.length;
+        let newText = greetings[currentIndex];
+
+        removeText(currentText, () => {
+          addText(newText, () => {
+            cursor.classList.remove('paused');
+          });
+        });
+      }
+
+      function startTextSwap() {
+        intervalId = setInterval(changeText, 3750);
+      }
+
+      function pauseTextSwap() {
+        clearInterval(intervalId);
+        clearInterval(removeInterval);
+        clearInterval(addInterval);
+      }
+
+      function handleVisibilityChange() {
+        if (document.hidden) {
+          pauseTextSwap();
+          isPageHidden = true;
+        } else if (isPageHidden) {
+          isPageHidden = false;
+          startTextSwap();
+        }
+      }
+
+      document.addEventListener('visibilitychange', handleVisibilityChange);
+
+      setTimeout(() => {
+        changeText();
+        startTextSwap();
+      }, 3000);
+    </script>
+  </body>
+</html>
