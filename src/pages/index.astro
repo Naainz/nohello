@@ -58,6 +58,47 @@
         font-style: italic;
       }
 
+      .dont-do-this {
+        margin-top: 60px;
+        font-size: 1.5rem;
+        color: #ff0000;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+      }
+
+      .card {
+        background-color: #f9f9f9;
+        border-radius: 8px;
+        padding: 20px;
+        margin-top: 20px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .message {
+        display: flex;
+        align-items: center;
+        margin-bottom: 15px;
+      }
+
+      .profile-pic {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: #cccccc;
+        margin-right: 10px;
+      }
+
+      .message-text {
+        font-size: 1.2rem;
+        color: #333333;
+      }
+
+      .message-name {
+        font-weight: bold;
+        margin-right: 5px;
+      }
+
       @keyframes blink {
         0%, 100% { opacity: 1; }
         50% { opacity: 0; }
@@ -73,6 +114,27 @@
       <h1>no <span class="strikethrough" id="changing-text">hello</span><span class="cursor" id="cursor">|</span></h1>
       <h2>please don't just say hello in chat</h2>
       <p class="quote">Imagine calling someone on the phone, going <em>hello!</em> then putting them on hold... 🤦‍♀️</p>
+
+      <div class="dont-do-this">❌ Don't do this</div>
+
+      <div class="card">
+        <div class="message">
+          <div class="profile-pic"></div>
+          <div class="message-text"><span class="message-name">Billy:</span> heyyyy</div>
+        </div>
+        <div class="message">
+          <div class="profile-pic"></div>
+          <div class="message-text"><span class="message-name">Hughie:</span> ..?</div>
+        </div>
+        <div class="message">
+          <div class="profile-pic"></div>
+          <div class="message-text"><span class="message-name">Billy:</span> when is the starlight rally?</div>
+        </div>
+        <div class="message">
+          <div class="profile-pic"></div>
+          <div class="message-text"><span class="message-name">Hughie:</span> oh, 10:30 mate</div>
+        </div>
+      </div>
     </div>
 
     <script>
