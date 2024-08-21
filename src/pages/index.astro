@@ -48,10 +48,11 @@
       }
 
       .quote {
-        font-weight: 500;
+        font-weight: 300;
         font-size: clamp(1rem, 2vw + 0.5rem, 1.5rem);
         color: #555555;
         margin-top: 20px;
+        font-style: italic;
       }
 
       .quote em {
@@ -59,26 +60,46 @@
       }
 
       .dont-do-this {
-        margin-top: 60px;
+        margin-top: 40px;
         font-size: 1.5rem;
-        color: #ff0000;
-        font-weight: bold;
         display: flex;
         align-items: center;
       }
 
-      .card {
-        background-color: #f9f9f9;
-        border-radius: 8px;
-        padding: 20px;
+      .dont-do-this span {
+        color: #ff0000;
+        font-weight: bold;
+        margin-right: 10px;
+      }
+
+      .dont-do-this-text {
+        color: #000000;
+        font-weight: bold;
+      }
+
+      .content-wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        flex-wrap: wrap;
         margin-top: 20px;
-        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .card {
+        background-color: #ffffff;
+        border-radius: 8px;
+        padding: 10px;
+        margin-top: 10px;
+        box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
+        width: 100%;
+        max-width: 45%;
+        box-sizing: border-box;
       }
 
       .message {
         display: flex;
         align-items: center;
-        margin-bottom: 15px;
+        margin-bottom: 5px;
       }
 
       .profile-pic {
@@ -99,6 +120,28 @@
         margin-right: 5px;
       }
 
+      .explanation {
+        font-size: 1rem;
+        color: #555555;
+        margin-top: 20px;
+        max-width: 45%;
+        box-sizing: border-box;
+      }
+
+      .explanation-bold {
+        font-weight: bold;
+      }
+
+      .faded-text {
+        opacity: 0.75;
+      }
+
+      @media (max-width: 770px) {
+        .card, .explanation {
+          max-width: 100%;
+        }
+      }
+
       @keyframes blink {
         0%, 100% { opacity: 1; }
         50% { opacity: 0; }
@@ -115,24 +158,42 @@
       <h2>please don't just say hello in chat</h2>
       <p class="quote">Imagine calling someone on the phone, going <em>hello!</em> then putting them on hold... 🤦‍♀️</p>
 
-      <div class="dont-do-this">❌ Don't do this</div>
+      <div class="dont-do-this">
+        <span>❌</span>
+        <span class="dont-do-this-text">Don't do this</span>
+      </div>
 
-      <div class="card">
-        <div class="message">
-          <div class="profile-pic"></div>
-          <div class="message-text"><span class="message-name">Billy:</span> heyyyy</div>
+      <div class="content-wrapper">
+        <div class="card">
+          <div class="message">
+            <div class="profile-pic"></div>
+            <div class="message-text"><span class="message-name">Billy:</span> heyyyy</div>
+          </div>
+          <div class="message">
+            <div class="profile-pic"></div>
+            <div class="message-text"><span class="message-name">Hughie:</span> ..?</div>
+          </div>
+          <div class="message">
+            <div class="profile-pic"></div>
+            <div class="message-text"><span class="message-name">Billy:</span> when is the starlight rally?</div>
+          </div>
+          <div class="message">
+            <div class="profile-pic"></div>
+            <div class="message-text"><span class="message-name">Hughie:</span> oh, 10:30 mate</div>
+          </div>
         </div>
-        <div class="message">
-          <div class="profile-pic"></div>
-          <div class="message-text"><span class="message-name">Hughie:</span> ..?</div>
-        </div>
-        <div class="message">
-          <div class="profile-pic"></div>
-          <div class="message-text"><span class="message-name">Billy:</span> when is the starlight rally?</div>
-        </div>
-        <div class="message">
-          <div class="profile-pic"></div>
-          <div class="message-text"><span class="message-name">Hughie:</span> oh, 10:30 mate</div>
+
+        <div class="explanation">
+          Note that Billy could have got his answer minutes sooner, and needn't have kept Hughie waiting. In fact, Hughie could have started thinking about the question right away!<br><br>
+          People who do this are generally trying to be polite by not jumping right into the request, like one would in person or on the phone - and that's great! But it's 2024 and chat is neither of those things. For most people, typing is much slower than talking. So despite best intentions, you're actually just making the other person wait for you to phrase your question, which is <span class="explanation-bold">lost productivity</span> (and kinda annoying).<br><br>
+          The same goes for:<br>
+          <span class="faded-text">❌ "Hello, are you around?"<br>
+          ❌ "hi sophie - quick question."<br>
+          ❌ "You got a sec?"<br>
+          ❌ "yt?"<br>
+          ❌ "ping"<br>
+          ❌ etc.</span><br><br>
+          <span class="explanation-bold">Just ask the question! 😫</span>
         </div>
       </div>
     </div>
