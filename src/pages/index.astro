@@ -18,7 +18,7 @@
       }
 
       h1 {
-        font-size: 6.5rem;
+        font-size: clamp(3rem, 6vw + 1rem, 5rem); /* Aggressive decrease, capped at 5rem */
         margin: 0;
         color: #000000;
         display: inline-block;
@@ -32,15 +32,15 @@
       }
 
       h2 {
-        font-size: 1.25rem;
-        margin-top: -20px;
+        font-size: clamp(1.5rem, 3vw + 0.5rem, 2.5rem); /* Aggressive decrease, capped at 2.5rem */
+        margin-top: -5px;
         color: #555555;
         font-weight: lighter;
         opacity: 0.8;
       }
 
       .cursor {
-        font-size: 6.5rem;
+        font-size: clamp(3rem, 6vw + 1rem, 5rem); /* Same scaling as h1, capped at 5rem */
         margin-left: 5px;
         color: #000000;
         display: inline-block;
@@ -82,11 +82,13 @@
       ];
       let currentIndex = 0;
       let intervalId;
+      let removeInterval;
+      let addInterval;
       let isPageHidden = false;
 
       function removeText(text, callback) {
         let length = text.length;
-        let removeInterval = setInterval(() => {
+        removeInterval = setInterval(() => {
           if (length > 0) {
             changingText.textContent = text.slice(0, length - 1);
             length--;
@@ -99,7 +101,7 @@
 
       function addText(text, callback) {
         let length = 0;
-        let addInterval = setInterval(() => {
+        addInterval = setInterval(() => {
           if (length < text.length) {
             changingText.textContent = text.slice(0, length + 1);
             length++;
@@ -127,9 +129,15 @@
         intervalId = setInterval(changeText, 3750);
       }
 
+      function pauseTextSwap() {
+        clearInterval(intervalId);
+        clearInterval(removeInterval);
+        clearInterval(addInterval);
+      }
+
       function handleVisibilityChange() {
         if (document.hidden) {
-          clearInterval(intervalId);
+          pauseTextSwap();
           isPageHidden = true;
         } else if (isPageHidden) {
           isPageHidden = false;
