@@ -1,0 +1,420 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<html lang="el">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>όχι γεια</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: Satoshi, sans-serif;
+        background-color: #ffffff;
+      }
+
+      .container {
+        padding: 40px 20px 20px 20px;
+      }
+
+      h1 {
+        font-size: clamp(3rem, 6vw + 1rem, 5rem);
+        margin: 0;
+        color: #000000;
+        display: inline-block;
+      }
+
+      .strikethrough {
+        color: black;
+        text-decoration: line-through;
+        text-decoration-color: red;
+        display: inline-block;
+      }
+
+      h2 {
+        font-size: clamp(1.5rem, 3vw + 0.5rem, 2.5rem);
+        margin-top: -5px;
+        color: #555555;
+        font-weight: lighter;
+        opacity: 0.8;
+      }
+
+      .cursor {
+        font-size: clamp(3rem, 6vw + 1rem, 5rem);
+        margin-left: 5px;
+        color: #000000;
+        display: inline-block;
+        animation: blink 0.75s ease-in-out infinite;
+      }
+
+      .quote {
+        font-weight: 300;
+        font-size: clamp(1rem, 2vw + 0.5rem, 1.5rem);
+        color: #555555;
+        margin-top: 20px;
+        font-style: italic;
+      }
+
+      .quote em {
+        font-style: italic;
+      }
+
+      .dont-do-this {
+        margin-top: 40px;
+        font-size: 1.5rem;
+        display: flex;
+        align-items: center;
+      }
+
+      .dont-do-this span {
+        color: #ff0000;
+        font-weight: bold;
+        margin-right: 10px;
+      }
+
+      .dont-do-this-text {
+        color: #000000;
+        font-weight: bold;
+      }
+
+      .content-wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        flex-wrap: wrap;
+        margin-top: 20px;
+      }
+
+      .card {
+        background-color: #ffffff;
+        border-radius: 8px;
+        padding: 8px;
+        margin-top: 10px;
+        box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
+        width: 100%;
+        max-width: 45%;
+        box-sizing: border-box;
+      }
+
+      .message {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 8px;
+        padding-top: 3px;
+      }
+
+      .profile-pic-butcher {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-image: url('butcher.jpg');
+        background-size: cover;
+        margin-right: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .profile-pic-hughie {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-image: url('hughie.jpg');
+        background-size: cover;
+        margin-right: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .message-header {
+        display: flex;
+        align-items: center;
+      }
+
+      .message-name {
+        font-weight: bold;
+        margin-right: 5px;
+      }
+
+      .message-time {
+        opacity: 0.6;
+        font-size: 0.9rem;
+      }
+
+      .message-text {
+        font-size: 1rem;
+        color: #333333;
+        margin-top: 4px;
+      }
+
+      .explanation {
+        font-size: 1rem;
+        color: #555555;
+        margin-top: 20px;
+        max-width: 45%;
+        box-sizing: border-box;
+      }
+
+      .explanation-bold {
+        font-weight: bold;
+      }
+
+      .faded-text {
+        opacity: 0.75;
+      }
+
+      @media (max-width: 770px) {
+        .card, .explanation {
+          max-width: 100%;
+        }
+      }
+
+      @keyframes blink {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0; }
+      }
+
+      .paused {
+        animation: none;
+      }
+
+      .try-this {
+        margin-top: 60px;
+        font-size: 1.5rem;
+        display: flex;
+        align-items: center;
+      }
+
+      .try-this span {
+        color: #00b894;
+        font-weight: bold;
+        margin-right: 10px;
+      }
+
+      .try-this-text {
+        color: #000000;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>όχι <span class="strikethrough" id="changing-text">γεια</span><span class="cursor" id="cursor">|</span></h1>
+      <h2>παρακαλώ μην λέτε απλά γεια στη συνομιλία</h2>
+      <p class="quote">Φανταστείτε να καλείτε κάποιον στο τηλέφωνο, να λέτε <em>γεια!</em> και μετά να τον αφήνετε στην αναμονή... 🤦‍♀️</p>
+
+      <div class="dont-do-this">
+        <span>❌</span>
+        <span class="dont-do-this-text">Μην το κάνετε αυτό</span>
+      </div>
+
+      <div class="content-wrapper">
+        <div class="card">
+          <div class="message">
+            <div class="profile-pic-butcher"></div>
+            <div>
+              <div class="message-header">
+                <span class="message-name">Billy</span>
+                <span class="message-time">10:15</span>
+              </div>
+              <div class="message-text">γειααα</div>
+            </div>
+          </div>
+          <div class="message">
+            <div class="profile-pic-hughie"></div>
+            <div>
+              <div class="message-header">
+                <span class="message-name">Hughie</span>
+                <span class="message-time">10:19</span>
+              </div>
+              <div class="message-text">..?</div>
+            </div>
+          </div>
+          <div class="message">
+            <div class="profile-pic-butcher"></div>
+            <div>
+              <div class="message-header">
+                <span class="message-name">Billy</span>
+                <span class="message-time">10:21</span>
+              </div>
+              <div class="message-text">πότε είναι το Starlight Rally;</div>
+            </div>
+          </div>
+          <div class="message">
+            <div class="profile-pic-hughie"></div>
+            <div>
+              <div class="message-header">
+                <span class="message-name">Hughie</span>
+                <span class="message-time">10:22</span>
+              </div>
+              <div class="message-text">στις 10:30 φίλε</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="explanation">
+          Σημειώστε ότι ο Billy θα μπορούσε να έχει πάρει την απάντηση του λεπτά νωρίτερα και δεν χρειαζόταν να κρατά τον Hughie να περιμένει. Στην πραγματικότητα, ο Hughie θα μπορούσε να είχε αρχίσει να σκέφτεται την ερώτηση αμέσως!<br><br>
+          Οι άνθρωποι που το κάνουν αυτό συνήθως προσπαθούν να είναι ευγενικοί, μη περνώντας κατευθείαν στο αίτημα, όπως θα έκαναν προσωπικά ή στο τηλέφωνο - και αυτό είναι υπέροχο! Αλλά είναι το 2024 και η συνομιλία δεν είναι ούτε το ένα ούτε το άλλο. Για τους περισσότερους ανθρώπους, η πληκτρολόγηση είναι πολύ πιο αργή από την ομιλία. Έτσι, παρά τις καλύτερες προθέσεις, ουσιαστικά κάνετε τον άλλον να περιμένει να διατυπώσετε την ερώτησή σας, κάτι που προκαλεί <span class="explanation-bold">απώλεια παραγωγικότητας</span> (και είναι κάπως ενοχλητικό).<br><br>
+          Το ίδιο ισχύει για:<br>
+          <span class="faded-text">❌ "Γεια, είσαι εδώ;"<br>
+          ❌ "γεια Neuman - μια γρήγορη ερώτηση."<br>
+          ❌ "Έχεις ένα λεπτό;"<br>
+          ❌ "yt?"<br>
+          ❌ "ping"<br>
+          ❌ κλπ.</span><br><br>
+          <span class="explanation-bold">Απλώς κάντε την ερώτηση! 😫</span>
+        </div>
+      </div>
+
+      <div class="try-this">
+        <span>✅</span>
+        <span class="try-this-text">Δοκιμάστε αυτό</span>
+      </div>
+
+      <div class="content-wrapper">
+        <div class="card">
+          <div class="message">
+            <div class="profile-pic-butcher"></div>
+            <div>
+              <div class="message-header">
+                <span class="message-name">Butcher</span>
+                <span class="message-time">10:15</span>
+              </div>
+              <div class="message-text">γεια! Τι ώρα είναι το Starlight Rally;</div>
+            </div>
+          </div>
+          <div class="message">
+            <div class="profile-pic-hughie"></div>
+            <div>
+              <div class="message-header">
+                <span class="message-name">Hughie</span>
+                <span class="message-time">10:17</span>
+              </div>
+              <div class="message-text">γεια φίλε <3 είναι στις 10:30</div>
+            </div>
+          </div>
+          <div class="message">
+            <div class="profile-pic-butcher"></div>
+            <div>
+              <div class="message-header">
+                <span class="message-name">Butcher</span>
+                <span class="message-time">10:19</span>
+              </div>
+              <div class="message-text">ευχαριστώ! θα τα πούμε τότε</div>
+            </div>
+          </div>
+          <div class="message">
+            <div class="profile-pic-hughie"></div>
+            <div>
+              <div class="message-header">
+                <span class="message-name">Hughie</span>
+                <span class="message-time">10:20</span>
+              </div>
+              <div class="message-text">👌 καμία έννοια</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="explanation">
+          Αν σας φαίνεται λίγο απότομο να πείτε απλώς "Γεια" και να κάνετε την ερώτηση, μπορείτε πάντα να προλογίσετε το μήνυμά σας με όσα ευγενικά λόγια θέλετε.<br><br>
+          Για παράδειγμα:<br>
+          <span class="faded-text">"γεια φίλε, τι κάνεις; Επίσης, ξέρεις πότε είναι αυτό που πρέπει να γίνει;"<br>
+          "Γεια σου! Ελπίζω να είσαι καλά. Ψάχνω την τελευταία έκδοση της παρουσίασης, όταν έχεις λίγο χρόνο :)"<br>
+          "γεια, αν δεν είσαι απασχολημένος, θα μπορούσες να ενημερώσεις τα NFRs;"<br>
+          κλπ.</span><br><br>
+          Μπορεί να φαίνεται ασήμαντο, αλλά κάνοντας την ερώτησή σας πριν λάβετε την αρχική απάντηση επιτρέπει επίσης την ασύγχρονη επικοινωνία. Αν ο άλλος είναι απών και φύγετε πριν επιστρέψει, μπορεί ακόμα να απαντήσει στην ερώτησή σας, αντί να κοιτάζει απλά ένα "Γεια" και να αναρωτιέται τι έχασε.<br><br>
+          Όταν γίνεται σωστά - όλοι είναι ευχαριστημένοι! 🎉
+        </div>
+      </div>
+    </div>
+
+    <Layout />
+    <script>
+      const changingText = document.getElementById('changing-text');
+      const cursor = document.getElementById('cursor');
+      const greetings = [
+        "γεια",
+        "γειά σου",
+        "καλημέρα",
+        "καλησπέρα",
+        "χαιρετισμούς",
+        "γεια χαρά",
+        "τι κάνεις",
+        "πώς είσαι"
+      ];
+      let currentIndex = 0;
+      let intervalId;
+      let removeInterval;
+      let addInterval;
+      let isPageHidden = false;
+
+      function removeText(text, callback) {
+        let length = text.length;
+        removeInterval = setInterval(() => {
+          if (length > 0) {
+            changingText.textContent = text.slice(0, length - 1);
+            length--;
+          } else {
+            clearInterval(removeInterval);
+            callback();
+          }
+        }, 75);
+      }
+
+      function addText(text, callback) {
+        let length = 0;
+        addInterval = setInterval(() => {
+          if (length < text.length) {
+            changingText.textContent = text.slice(0, length + 1);
+            length++;
+          } else {
+            clearInterval(addInterval);
+            callback();
+          }
+        }, 75);
+      }
+
+      function changeText() {
+        cursor.classList.add('paused');
+        let currentText = greetings[currentIndex];
+        currentIndex = (currentIndex + 1) % greetings.length;
+        let newText = greetings[currentIndex];
+
+        removeText(currentText, () => {
+          addText(newText, () => {
+            cursor.classList.remove('paused');
+          });
+        });
+      }
+
+      function startTextSwap() {
+        intervalId = setInterval(changeText, 3750);
+      }
+
+      function pauseTextSwap() {
+        clearInterval(intervalId);
+        clearInterval(removeInterval);
+        clearInterval(addInterval);
+      }
+
+      function handleVisibilityChange() {
+        if (document.hidden) {
+          pauseTextSwap();
+          isPageHidden = true;
+        } else if (isPageHidden) {
+          isPageHidden = false;
+          startTextSwap();
+        }
+      }
+
+      document.addEventListener('visibilitychange', handleVisibilityChange);
+
+      setTimeout(() => {
+        changeText();
+        startTextSwap();
+      }, 3000);
+    </script>
+  </body>
+</html>
