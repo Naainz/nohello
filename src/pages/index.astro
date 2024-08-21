@@ -28,6 +28,7 @@
         color: black;
         text-decoration: line-through;
         text-decoration-color: red;
+        display: inline-block;
       }
 
       h2 {
@@ -50,12 +51,70 @@
         0%, 100% { opacity: 1; }
         50% { opacity: 0; }
       }
+
+      .paused {
+        animation: none;
+      }
     </style>
   </head>
   <body>
     <div class="container">
-      <h1>no <span class="strikethrough">hello</span><span class="cursor">|</span></h1>
+      <h1>no <span class="strikethrough" id="changing-text">hello</span><span class="cursor" id="cursor">|</span></h1>
       <h2>please don't just say hello in chat</h2>
     </div>
+
+    <script>
+      const changingText = document.getElementById('changing-text');
+      const cursor = document.getElementById('cursor');
+      let isHello = true;
+
+      function removeText(text, callback) {
+        let length = text.length;
+        let removeInterval = setInterval(() => {
+          if (length > 0) {
+            changingText.textContent = text.slice(0, length - 1);
+            length--;
+          } else {
+            clearInterval(removeInterval);
+            callback();
+          }
+        }, 50); // Faster removal (20 letters per second)
+      }
+
+      function addText(text, callback) {
+        let length = 0;
+        let addInterval = setInterval(() => {
+          if (length < text.length) {
+            changingText.textContent = text.slice(0, length + 1);
+            length++;
+          } else {
+            clearInterval(addInterval);
+            callback();
+          }
+        }, 50); // Faster addition (20 letters per second)
+      }
+
+      function changeText() {
+        cursor.classList.add('paused');
+        let currentText = isHello ? 'hello' : 'hey';
+        let newText = isHello ? 'hey' : 'hello';
+
+        removeText(currentText, () => {
+          addText(newText, () => {
+            isHello = !isHello;
+            cursor.classList.remove('paused');
+          });
+        });
+      }
+
+      function startTextSwap() {
+        setTimeout(() => {
+          changeText();
+          setInterval(changeText, 2250); // Change text every 2.25 seconds after initial swap
+        }, 3000); // Initial 3-second delay before first swap
+      }
+
+      startTextSwap();
+    </script>
   </body>
 </html>
