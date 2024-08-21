@@ -21,6 +21,7 @@
         font-size: 6.5rem;
         margin: 0;
         color: #000000;
+        display: inline-block;
       }
 
       .strikethrough {
@@ -34,13 +35,26 @@
         margin-top: -20px;
         color: #555555;
         font-weight: lighter;
-		opacity: 0.8;
+        opacity: 0.8;
+      }
+
+      .cursor {
+        font-size: 6.5rem;
+        margin-left: 5px;
+        color: #000000;
+        display: inline-block;
+        animation: blink 0.75s ease-in-out infinite;
+      }
+
+      @keyframes blink {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0; }
       }
     </style>
   </head>
   <body>
     <div class="container">
-      <h1>no <span class="strikethrough">hello</span></h1>
+      <h1>no <span class="strikethrough">hello</span><span class="cursor">|</span></h1>
       <h2>please don't just say hello in chat</h2>
     </div>
   </body>
