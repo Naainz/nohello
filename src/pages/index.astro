@@ -33,7 +33,7 @@
 
       h2 {
         font-size: 1.25rem;
-        margin-top: -20px;
+        margin-top: -5px;
         color: #555555;
         font-weight: lighter;
         opacity: 0.8;
@@ -67,6 +67,8 @@
       const changingText = document.getElementById('changing-text');
       const cursor = document.getElementById('cursor');
       let isHello = true;
+      let intervalId;
+      let isPageHidden = false;
 
       function removeText(text, callback) {
         let length = text.length;
@@ -78,7 +80,7 @@
             clearInterval(removeInterval);
             callback();
           }
-        }, 50); // Faster removal (20 letters per second)
+        }, 75);
       }
 
       function addText(text, callback) {
@@ -91,7 +93,7 @@
             clearInterval(addInterval);
             callback();
           }
-        }, 50); // Faster addition (20 letters per second)
+        }, 75);
       }
 
       function changeText() {
@@ -108,13 +110,25 @@
       }
 
       function startTextSwap() {
-        setTimeout(() => {
-          changeText();
-          setInterval(changeText, 2250); // Change text every 2.25 seconds after initial swap
-        }, 3000); // Initial 3-second delay before first swap
+        intervalId = setInterval(changeText, 3750);
       }
 
-      startTextSwap();
+      function handleVisibilityChange() {
+        if (document.hidden) {
+          clearInterval(intervalId);
+          isPageHidden = true;
+        } else if (isPageHidden) {
+          isPageHidden = false;
+          startTextSwap();
+        }
+      }
+
+      document.addEventListener('visibilitychange', handleVisibilityChange);
+
+      setTimeout(() => {
+        changeText();
+        startTextSwap();
+      }, 3000);
     </script>
   </body>
 </html>
