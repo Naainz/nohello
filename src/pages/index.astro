@@ -100,7 +100,7 @@
         display: flex;
         align-items: flex-start;
         margin-bottom: 8px;
-        padding-top: 3px; /* Added padding to the topmost element inside the card */
+        padding-top: 3px;
       }
 
       .profile-pic-butcher {
@@ -178,6 +178,24 @@
       .paused {
         animation: none;
       }
+
+      .try-this {
+        margin-top: 60px;
+        font-size: 1.5rem;
+        display: flex;
+        align-items: center;
+      }
+
+      .try-this span {
+        color: #00b894;
+        font-weight: bold;
+        margin-right: 10px;
+      }
+
+      .try-this-text {
+        color: #000000;
+        font-weight: bold;
+      }
     </style>
   </head>
   <body>
@@ -246,6 +264,68 @@
           ❌ "ping"<br>
           ❌ etc.</span><br><br>
           <span class="explanation-bold">Just ask the question! 😫</span>
+        </div>
+      </div>
+
+      <!-- New Section Starts Here -->
+      <div class="try-this">
+        <span>✅</span>
+        <span class="try-this-text">Instead try this</span>
+      </div>
+
+      <div class="content-wrapper">
+        <div class="card">
+          <div class="message">
+            <div class="profile-pic-butcher"></div>
+            <div>
+              <div class="message-header">
+                <span class="message-name">Butcher</span>
+                <span class="message-time">10:15</span>
+              </div>
+              <div class="message-text">heya! What time was the starlight rally?</div>
+            </div>
+          </div>
+          <div class="message">
+            <div class="profile-pic-hughie"></div>
+            <div>
+              <div class="message-header">
+                <span class="message-name">Hughie</span>
+                <span class="message-time">10:17</span>
+              </div>
+              <div class="message-text">hey pookie <3 it's at 10:30</div>
+            </div>
+          </div>
+          <div class="message">
+            <div class="profile-pic-butcher"></div>
+            <div>
+              <div class="message-header">
+                <span class="message-name">Butcher</span>
+                <span class="message-time">10:19</span>
+              </div>
+              <div class="message-text">ta! see you then</div>
+            </div>
+          </div>
+          <div class="message">
+            <div class="profile-pic-hughie"></div>
+            <div>
+              <div class="message-header">
+                <span class="message-name">Hughie</span>
+                <span class="message-time">10:20</span>
+              </div>
+              <div class="message-text">👌 np</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="explanation">
+          If you feel it's a bit brusque to simply say "Hi" and ask the question, you can still preface your message with as many pleasantries as you see fit.<br><br>
+          For example:<br>
+          <span class="faded-text">"hey man, what's up? also, any idea when that thing's due?"<br>
+          "Hi there! Hope you're well. I'm after the latest deck, when you get a sec :)"<br>
+          "hey, if you're not busy, could you update those NFRs?"<br>
+          etc.</span><br><br>
+          It may seem trivial, but asking your question before getting that initial salutatory reply also allows for asynchronous communication. If the other party is away, and you leave before they come back, they can still answer your question, instead of just staring at a "Hello" and wondering what they missed.<br><br>
+          When done right - everyone's happy! 🎉
         </div>
       </div>
     </div>
