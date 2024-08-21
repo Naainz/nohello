@@ -1,0 +1,422 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>不说你好</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: Satoshi, sans-serif;
+        background-color: #ffffff;
+      }
+
+      .container {
+        padding: 40px 20px 20px 20px;
+      }
+
+      h1 {
+        font-size: clamp(3rem, 6vw + 1rem, 5rem);
+        margin: 0;
+        color: #000000;
+        display: inline-block;
+      }
+
+      .strikethrough {
+        color: black;
+        text-decoration: line-through;
+        text-decoration-color: red;
+        display: inline-block;
+      }
+
+      h2 {
+        font-size: clamp(1.5rem, 3vw + 0.5rem, 2.5rem);
+        margin-top: -5px;
+        color: #555555;
+        font-weight: lighter;
+        opacity: 0.8;
+      }
+
+      .cursor {
+        font-size: clamp(3rem, 6vw + 1rem, 5rem);
+        margin-left: 5px;
+        color: #000000;
+        display: inline-block;
+        animation: blink 0.75s ease-in-out infinite;
+      }
+
+      .quote {
+        font-weight: 300;
+        font-size: clamp(1rem, 2vw + 0.5rem, 1.5rem);
+        color: #555555;
+        margin-top: 20px;
+        font-style: italic;
+      }
+
+      .quote em {
+        font-style: italic;
+      }
+
+      .dont-do-this {
+        margin-top: 40px;
+        font-size: 1.5rem;
+        display: flex;
+        align-items: center;
+      }
+
+      .dont-do-this span {
+        color: #ff0000;
+        font-weight: bold;
+        margin-right: 10px;
+      }
+
+      .dont-do-this-text {
+        color: #000000;
+        font-weight: bold;
+      }
+
+      .content-wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        flex-wrap: wrap;
+        margin-top: 20px;
+      }
+
+      .card {
+        background-color: #ffffff;
+        border-radius: 8px;
+        padding: 8px;
+        margin-top: 10px;
+        box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
+        width: 100%;
+        max-width: 45%;
+        box-sizing: border-box;
+      }
+
+      .message {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 8px;
+        padding-top: 3px;
+      }
+
+      .profile-pic-butcher {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-image: url('butcher.jpg');
+        background-size: cover;
+        margin-right: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .profile-pic-hughie {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-image: url('hughie.jpg');
+        background-size: cover;
+        margin-right: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .message-header {
+        display: flex;
+        align-items: center;
+      }
+
+      .message-name {
+        font-weight: bold;
+        margin-right: 5px;
+      }
+
+      .message-time {
+        opacity: 0.6;
+        font-size: 0.9rem;
+      }
+
+      .message-text {
+        font-size: 1rem;
+        color: #333333;
+        margin-top: 4px;
+      }
+
+      .explanation {
+        font-size: 1rem;
+        color: #555555;
+        margin-top: 20px;
+        max-width: 45%;
+        box-sizing: border-box;
+      }
+
+      .explanation-bold {
+        font-weight: bold;
+      }
+
+      .faded-text {
+        opacity: 0.75;
+      }
+
+      @media (max-width: 770px) {
+        .card, .explanation {
+          max-width: 100%;
+        }
+      }
+
+      @keyframes blink {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0; }
+      }
+
+      .paused {
+        animation: none;
+      }
+
+      .try-this {
+        margin-top: 60px;
+        font-size: 1.5rem;
+        display: flex;
+        align-items: center;
+      }
+
+      .try-this span {
+        color: #00b894;
+        font-weight: bold;
+        margin-right: 10px;
+      }
+
+      .try-this-text {
+        color: #000000;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>不<span class="strikethrough" id="changing-text">你好</span><span class="cursor" id="cursor">|</span></h1>
+      <h2>请不要只在聊天中说“你好”</h2>
+      <p class="quote">想象一下，你给某人打电话，说了<em>你好！</em>，然后把他们挂起……🤦‍♀️</p>
+
+      <div class="dont-do-this">
+        <span>❌</span>
+        <span class="dont-do-this-text">不要这样做</span>
+      </div>
+
+      <div class="content-wrapper">
+        <div class="card">
+          <div class="message">
+            <div class="profile-pic-butcher"></div>
+            <div>
+              <div class="message-header">
+                <span class="message-name">比利</span>
+                <span class="message-time">10:15</span>
+              </div>
+              <div class="message-text">嘿嘿嘿</div>
+            </div>
+          </div>
+          <div class="message">
+            <div class="profile-pic-hughie"></div>
+            <div>
+              <div class="message-header">
+                <span class="message-name">休伊</span>
+                <span class="message-time">10:19</span>
+              </div>
+              <div class="message-text">……?</div>
+            </div>
+          </div>
+          <div class="message">
+            <div class="profile-pic-butcher"></div>
+            <div>
+              <div class="message-header">
+                <span class="message-name">比利</span>
+                <span class="message-time">10:21</span>
+              </div>
+              <div class="message-text">星光集会是什么时候？</div>
+            </div>
+          </div>
+          <div class="message">
+            <div class="profile-pic-hughie"></div>
+            <div>
+              <div class="message-header">
+                <span class="message-name">休伊</span>
+                <span class="message-time">10:22</span>
+              </div>
+              <div class="message-text">哦，10:30，老兄</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="explanation">
+          请注意，比利本可以更早得到答案，也不必让休伊一直等待。事实上，休伊本可以立即开始思考这个问题！<br><br>
+          通常人们这样做是为了表现礼貌，不想一开始就直入主题，就像在面对面或电话交谈时一样——这是很棒的！但现在是2024年，聊天并不是面对面交流。对于大多数人来说，打字的速度远远慢于说话。因此，尽管初衷是好的，但实际上你只是在让对方等待你措辞的问题，这导致了效率的损失（而且有点烦人）。<br><br>
+          同样适用于：<br>
+          <span class="faded-text">❌ “你好，你在吗？”<br>
+          ❌ “嗨，纽曼——有个问题。”<br>
+          ❌ “你有空吗？”<br>
+          ❌ “yt？”<br>
+          ❌ “ping”<br>
+          ❌ 等等。</span><br><br>
+          <span class="explanation-bold">直接问问题吧！😫</span>
+        </div>
+      </div>
+
+      <div class="try-this">
+        <span>✅</span>
+        <span class="try-this-text">试试这样</span>
+      </div>
+
+      <div class="content-wrapper">
+        <div class="card">
+          <div class="message">
+            <div class="profile-pic-butcher"></div>
+            <div>
+              <div class="message-header">
+                <span class="message-name">比利</span>
+                <span class="message-time">10:15</span>
+              </div>
+              <div class="message-text">嘿呀！星光集会是什么时候？</div>
+            </div>
+          </div>
+          <div class="message">
+            <div class="profile-pic-hughie"></div>
+            <div>
+              <div class="message-header">
+                <span class="message-name">休伊</span>
+                <span class="message-time">10:17</span>
+              </div>
+              <div class="message-text">嘿，宝贝 <3 在10:30</div>
+            </div>
+          </div>
+          <div class="message">
+            <div class="profile-pic-butcher"></div>
+            <div>
+              <div class="message-header">
+                <span class="message-name">比利</span>
+                <span class="message-time">10:19</span>
+              </div>
+              <div class="message-text">谢谢！到时见</div>
+            </div>
+          </div>
+          <div class="message">
+            <div class="profile-pic-hughie"></div>
+            <div>
+              <div class="message-header">
+                <span class="message-name">休伊</span>
+                <span class="message-time">10:20</span>
+              </div>
+              <div class="message-text">👌 没问题</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="explanation">
+          如果你觉得直接说“你好”然后问问题有点唐突，你仍然可以根据需要在消息前添加尽可能多的礼貌用语。<br><br>
+          例如：<br>
+          <span class="faded-text">“嘿，兄弟，最近怎么样？另外，那个东西什么时候到期？”<br>
+          “嗨！希望你一切都好。我想要最新的幻灯片，有空的时候发给我 :)”<br>
+          “嘿，如果你不忙的话，能更新那些NFR吗？”<br>
+          等等。</span><br><br>
+          这看起来可能无关紧要，但在提出问题之前问好还允许了异步通信。如果对方不在，而你在他们回来之前离开了，他们仍然可以回答你的问题，而不是只看到“你好”，然后想知道错过了什么。<br><br>
+          做得好——每个人都开心！🎉
+        </div>
+      </div>
+    </div>
+
+    <Layout />
+    <script>
+      const changingText = document.getElementById('changing-text');
+      const cursor = document.getElementById('cursor');
+      const greetings = [
+        "你好",
+        "嗨",
+        "您好",
+        "大家好",
+        "早上好",
+        "下午好",
+        "晚上好",
+        "问候",
+        "喂",
+        "您好"
+      ];
+      let currentIndex = 0;
+      let intervalId;
+      let removeInterval;
+      let addInterval;
+      let isPageHidden = false;
+
+      function removeText(text, callback) {
+        let length = text.length;
+        removeInterval = setInterval(() => {
+          if (length > 0) {
+            changingText.textContent = text.slice(0, length - 1);
+            length--;
+          } else {
+            clearInterval(removeInterval);
+            callback();
+          }
+        }, 75);
+      }
+
+      function addText(text, callback) {
+        let length = 0;
+        addInterval = setInterval(() => {
+          if (length < text.length) {
+            changingText.textContent = text.slice(0, length + 1);
+            length++;
+          } else {
+            clearInterval(addInterval);
+            callback();
+          }
+        }, 75);
+      }
+
+      function changeText() {
+        cursor.classList.add('paused');
+        let currentText = greetings[currentIndex];
+        currentIndex = (currentIndex + 1) % greetings.length;
+        let newText = greetings[currentIndex];
+
+        removeText(currentText, () => {
+          addText(newText, () => {
+            cursor.classList.remove('paused');
+          });
+        });
+      }
+
+      function startTextSwap() {
+        intervalId = setInterval(changeText, 3750);
+      }
+
+      function pauseTextSwap() {
+        clearInterval(intervalId);
+        clearInterval(removeInterval);
+        clearInterval(addInterval);
+      }
+
+      function handleVisibilityChange() {
+        if (document.hidden) {
+          pauseTextSwap();
+          isPageHidden = true;
+        } else if (isPageHidden) {
+          isPageHidden = false;
+          startTextSwap();
+        }
+      }
+
+      document.addEventListener('visibilitychange', handleVisibilityChange);
+
+      setTimeout(() => {
+        changeText();
+        startTextSwap();
+      }, 3000);
+    </script>
+  </body>
+</html>
