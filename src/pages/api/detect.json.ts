@@ -28,7 +28,7 @@ export const GET: APIRoute = async ({ request }) => {
     }
 
     const countryLocaleMap: Record<string, string> = {
-      'US': 'en',
+      'US': '/',
       'IT': 'it',
       'JP': 'jp',
       'KR': 'ko',
