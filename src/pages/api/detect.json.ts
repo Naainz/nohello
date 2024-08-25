@@ -1,5 +1,7 @@
 import type { APIRoute } from 'astro';
 
+const lastRedirectionTime: Record<string, number> = {};
+
 export const GET: APIRoute = async ({ request }) => {
   try {
     const ip = request.headers.get('x-forwarded-for')
@@ -12,6 +14,23 @@ export const GET: APIRoute = async ({ request }) => {
       return new Response('IP address not found', { status: 400 });
     }
 
+    const url = new URL(request.url);
+    const pathLocale = url.pathname.split('/')[1];
+
+    const availableLocales = [
+      'en', 'it', 'jp', 'ko', 'ru', 'zh', 'fr', 'es', 'el', 'de', 'am'
+    ];
+
+    if (availableLocales.includes(pathLocale)) {
+      return new Response(null, { status: 204 });
+    }
+
+    const currentTime = Date.now();
+    if (lastRedirectionTime[ip] && currentTime - lastRedirectionTime[ip] < 60000) {
+      return new Response(null, { status: 204 });
+    }
+
+    // Fetch location data based on IP
     const response = await fetch(`https://naai.nz/ip/index.php?ip=${ip}`);
 
     if (!response.ok) {
@@ -41,24 +60,15 @@ export const GET: APIRoute = async ({ request }) => {
     };
 
     const locale = countryLocaleMap[data.country] || 'en';
+    const targetPath = locale === 'en' ? '/' : `/${locale}/`;
 
-    const url = new URL(request.url);
-    const pathLocale = url.pathname.split('/')[1];
-
-    const availableLocales = [
-      'en', 'it', 'jp', 'ko', 'ru', 'zh', 'fr', 'es', 'el', 'de', 'am'
-    ];
-
-    let targetPath = locale === 'en' ? '/' : `/${locale}/`;
-
-    // Only redirect if the current path does not match the intended target and pathLocale is not empty
-    if (!availableLocales.includes(pathLocale) && url.pathname !== targetPath) {
+    if (url.pathname !== targetPath) {
       const newUrl = `${url.origin}${targetPath}`;
       console.log(`Redirecting to ${newUrl} based on country ${data.country}`);
+      lastRedirectionTime[ip] = currentTime;
       return Response.redirect(newUrl, 302);
     }
 
-    // No redirection needed
     return new Response(null, { status: 204 });
   } catch (error) {
     console.error('Error processing request:', error);
