@@ -1,0 +1,19 @@
+---
+export async function get({ request }) {
+  return {
+    status: 301,
+    headers: {
+      Location: '/',
+    },
+  };
+}
+---
+
+<html>
+  <head>
+    <meta http-equiv="refresh" content="0; url=/" />
+  </head>
+  <body>
+    Redirecting to <a href="/">Home</a>...
+  </body>
+</html>
