@@ -2,7 +2,6 @@ import type { APIRoute } from 'astro';
 
 export const GET: APIRoute = async ({ request }) => {
   try {
-    // Attempt to retrieve the IP address from various headers or the socket
     const ip = request.headers.get('x-forwarded-for')
       || request.headers.get('cf-connecting-ip')
       || request.headers.get('x-real-ip')
@@ -28,7 +27,7 @@ export const GET: APIRoute = async ({ request }) => {
     }
 
     const countryLocaleMap: Record<string, string> = {
-      'US': '/',
+      'US': 'en',
       'IT': 'it',
       'JP': 'jp',
       'KR': 'ko',
@@ -41,19 +40,28 @@ export const GET: APIRoute = async ({ request }) => {
       'AM': 'am',
     };
 
-    const locale = countryLocaleMap[data.country] || '/';
+    const locale = countryLocaleMap[data.country] || 'en';
 
     const url = new URL(request.url);
     const pathLocale = url.pathname.split('/')[1];
 
     const availableLocales = [
-      '/', 'it', 'jp', 'ko', 'ru', 'zh', 'fr', 'es', 'el', 'de', 'am'
+      'en', 'it', 'jp', 'ko', 'ru', 'zh', 'fr', 'es', 'el', 'de', 'am'
     ];
 
-    if (!availableLocales.includes(pathLocale)) {
-      const newUrl = `${url.origin}/${locale}/`;
-      console.log(`Redirecting to ${newUrl} based on country ${data.country}`);
-      return Response.redirect(newUrl, 302);
+    let targetUrl;
+
+    // If the locale is 'en', redirect to the root ('/')
+    if (locale === 'en') {
+      targetUrl = `${url.origin}/`;
+    } else {
+      targetUrl = `${url.origin}/${locale}/`;
+    }
+
+    // Prevent redirection loop by checking if the current path matches the target
+    if (!url.pathname.startsWith(targetUrl)) {
+      console.log(`Redirecting to ${targetUrl} based on country ${data.country}`);
+      return Response.redirect(targetUrl, 302);
     }
 
     return new Response(null, { status: 204 });
