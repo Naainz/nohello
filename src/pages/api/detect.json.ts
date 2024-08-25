@@ -5,7 +5,7 @@ export const GET: APIRoute = async ({ request }) => {
     const ip = request.headers.get('x-forwarded-for')
       || request.headers.get('cf-connecting-ip')
       || request.headers.get('x-real-ip')
-      || (request.socket && request.socket.remoteAddress);
+      || request.socket?.remoteAddress;
 
     if (!ip) {
       console.error('IP address not found');
@@ -51,13 +51,14 @@ export const GET: APIRoute = async ({ request }) => {
 
     let targetPath = locale === 'en' ? '/' : `/${locale}/`;
 
-    // Only redirect if the current path doesn't match the intended target
-    if (!availableLocales.includes(pathLocale) || (pathLocale && !url.pathname.startsWith(targetPath))) {
+    // Only redirect if the current path does not match the intended target and pathLocale is not empty
+    if (!availableLocales.includes(pathLocale) && url.pathname !== targetPath) {
       const newUrl = `${url.origin}${targetPath}`;
       console.log(`Redirecting to ${newUrl} based on country ${data.country}`);
       return Response.redirect(newUrl, 302);
     }
 
+    // No redirection needed
     return new Response(null, { status: 204 });
   } catch (error) {
     console.error('Error processing request:', error);
