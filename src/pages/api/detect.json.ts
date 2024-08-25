@@ -2,7 +2,11 @@ import type { APIRoute } from 'astro';
 
 export const GET: APIRoute = async ({ request }) => {
   try {
-    const ip = request.headers.get('x-forwarded-for') || request.socket.remoteAddress;
+    // Attempt to retrieve the IP address from various headers or the socket
+    const ip = request.headers.get('x-forwarded-for')
+      || request.headers.get('cf-connecting-ip')
+      || request.headers.get('x-real-ip')
+      || (request.socket && request.socket.remoteAddress);
 
     if (!ip) {
       console.error('IP address not found');
@@ -47,7 +51,7 @@ export const GET: APIRoute = async ({ request }) => {
     ];
 
     if (!availableLocales.includes(pathLocale)) {
-      const newUrl = `/${locale}/`;
+      const newUrl = `${url.origin}/${locale}/`;
       console.log(`Redirecting to ${newUrl} based on country ${data.country}`);
       return Response.redirect(newUrl, 302);
     }
