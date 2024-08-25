@@ -7,197 +7,278 @@ import Layout from '../layouts/Layout.astro';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>pas de bonjour</title>
-    <style>
-      body {
-        margin: 0;
-        font-family: Satoshi, sans-serif;
-        background-color: #ffffff;
-      }
+<style>
+  @font-face {
+    font-family: 'Satoshi';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Satoshi'), url(https://fonts.cdnfonts.com/s/85546/Satoshi-Regular.woff) format('woff');
+    font-display: swap;
+  }
 
-      .container {
-        padding: 40px 20px 20px 20px;
-      }
+  @font-face {
+    font-family: 'Satoshi';
+    font-style: italic;
+    font-weight: 400;
+    src: local('Satoshi'), url(https://fonts.cdnfonts.com/s/85546/Satoshi-Italic.woff) format('woff');
+    font-display: swap;
+  }
 
-      h1 {
-        font-size: clamp(3rem, 6vw + 1rem, 5rem);
-        margin: 0;
-        color: #000000;
-        display: inline-block;
-      }
+  @font-face {
+    font-family: 'Satoshi';
+    font-style: normal;
+    font-weight: 300;
+    src: local('Satoshi'), url(https://fonts.cdnfonts.com/s/85546/Satoshi-Light.woff) format('woff');
+    font-display: swap;
+  }
 
-      .strikethrough {
-        color: black;
-        text-decoration: line-through;
-        text-decoration-color: red;
-        display: inline-block;
-      }
+  @font-face {
+    font-family: 'Satoshi';
+    font-style: italic;
+    font-weight: 300;
+    src: local('Satoshi'), url(https://fonts.cdnfonts.com/s/85546/Satoshi-LightItalic.woff) format('woff');
+    font-display: swap;
+  }
 
-      h2 {
-        font-size: clamp(1.5rem, 3vw + 0.5rem, 2.5rem);
-        margin-top: -5px;
-        color: #555555;
-        font-weight: lighter;
-        opacity: 0.8;
-      }
+  @font-face {
+    font-family: 'Satoshi';
+    font-style: normal;
+    font-weight: 500;
+    src: local('Satoshi'), url(https://fonts.cdnfonts.com/s/85546/Satoshi-Medium.woff) format('woff');
+    font-display: swap;
+  }
 
-      .cursor {
-        font-size: clamp(3rem, 6vw + 1rem, 5rem);
-        margin-left: 5px;
-        color: #000000;
-        display: inline-block;
-        animation: blink 0.75s ease-in-out infinite;
-      }
+  @font-face {
+    font-family: 'Satoshi';
+    font-style: italic;
+    font-weight: 500;
+    src: local('Satoshi'), url(https://fonts.cdnfonts.com/s/85546/Satoshi-MediumItalic.woff) format('woff');
+    font-display: swap;
+  }
 
-      .quote {
-        font-weight: 300;
-        font-size: clamp(1rem, 2vw + 0.5rem, 1.5rem);
-        color: #555555;
-        margin-top: 20px;
-        font-style: italic;
-      }
+  @font-face {
+    font-family: 'Satoshi';
+    font-style: normal;
+    font-weight: 700;
+    src: local('Satoshi'), url(https://fonts.cdnfonts.com/s/85546/Satoshi-Bold.woff) format('woff');
+    font-display: swap;
+  }
 
-      .quote em {
-        font-style: italic;
-      }
+  @font-face {
+    font-family: 'Satoshi';
+    font-style: italic;
+    font-weight: 700;
+    src: local('Satoshi'), url(https://fonts.cdnfonts.com/s/85546/Satoshi-BoldItalic.woff) format('woff');
+    font-display: swap;
+  }
 
-      .dont-do-this {
-        margin-top: 40px;
-        font-size: 1.5rem;
-        display: flex;
-        align-items: center;
-      }
+  @font-face {
+    font-family: 'Satoshi';
+    font-style: normal;
+    font-weight: 900;
+    src: local('Satoshi'), url(https://fonts.cdnfonts.com/s/85546/Satoshi-Black.woff) format('woff');
+    font-display: swap;
+  }
 
-      .dont-do-this span {
-        color: #ff0000;
-        font-weight: bold;
-        margin-right: 10px;
-      }
+  @font-face {
+    font-family: 'Satoshi';
+    font-style: italic;
+    font-weight: 900;
+    src: local('Satoshi'), url(https://fonts.cdnfonts.com/s/85546/Satoshi-BlackItalic.woff) format('woff');
+    font-display: swap;
+  }
 
-      .dont-do-this-text {
-        color: #000000;
-        font-weight: bold;
-      }
+  body {
+    margin: 0;
+    font-family: Satoshi, sans-serif;
+    background-color: #ffffff;
+  }
 
-      .content-wrapper {
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
-        flex-wrap: wrap;
-        margin-top: 20px;
-      }
+  .container {
+    padding: 40px 20px 20px 20px;
+  }
 
-      .card {
-        background-color: #ffffff;
-        border-radius: 8px;
-        padding: 8px;
-        margin-top: 10px;
-        box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
-        width: 100%;
-        max-width: 45%;
-        box-sizing: border-box;
-      }
+  h1 {
+    font-size: clamp(3rem, 6vw + 1rem, 5rem);
+    margin: 0;
+    color: #000000;
+    display: inline-block;
+  }
 
-      .message {
-        display: flex;
-        align-items: flex-start;
-        margin-bottom: 8px;
-        padding-top: 3px;
-      }
+  .strikethrough {
+    color: black;
+    text-decoration: line-through;
+    text-decoration-color: red;
+    display: inline-block;
+  }
 
-      .profile-pic-butcher {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        background-image: url('butcher.jpg');
-        background-size: cover;
-        margin-right: 10px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-      }
+  h2 {
+    font-size: clamp(1.5rem, 3vw + 0.5rem, 2.5rem);
+    margin-top: -5px;
+    color: #555555;
+    font-weight: lighter;
+    opacity: 0.8;
+  }
 
-      .profile-pic-hughie {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        background-image: url('hughie.jpg');
-        background-size: cover;
-        margin-right: 10px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-      }
+  .cursor {
+    font-size: clamp(3rem, 6vw + 1rem, 5rem);
+    margin-left: 5px;
+    color: #000000;
+    display: inline-block;
+    animation: blink 0.75s ease-in-out infinite;
+  }
 
-      .message-header {
-        display: flex;
-        align-items: center;
-      }
+  .quote {
+    font-weight: 300;
+    font-size: clamp(1rem, 2vw + 0.5rem, 1.5rem);
+    color: #555555;
+    margin-top: 20px;
+    font-style: italic;
+  }
 
-      .message-name {
-        font-weight: bold;
-        margin-right: 5px;
-      }
+  .quote em {
+    font-style: italic;
+  }
 
-      .message-time {
-        opacity: 0.6;
-        font-size: 0.9rem;
-      }
+  .dont-do-this {
+    margin-top: 40px;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+  }
 
-      .message-text {
-        font-size: 1rem;
-        color: #333333;
-        margin-top: 4px;
-      }
+  .dont-do-this span {
+    color: #ff0000;
+    font-weight: bold;
+    margin-right: 10px;
+  }
 
-      .explanation {
-        font-size: 1rem;
-        color: #555555;
-        margin-top: 20px;
-        max-width: 45%;
-        box-sizing: border-box;
-      }
+  .dont-do-this-text {
+    color: #000000;
+    font-weight: bold;
+  }
 
-      .explanation-bold {
-        font-weight: bold;
-      }
+  .content-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    margin-top: 20px;
+  }
 
-      .faded-text {
-        opacity: 0.75;
-      }
+  .card {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 8px;
+    margin-top: 10px;
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 45%;
+    box-sizing: border-box;
+  }
 
-      @media (max-width: 770px) {
-        .card, .explanation {
-          max-width: 100%;
-        }
-      }
+  .message {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 8px;
+    padding-top: 3px;
+  }
 
-      @keyframes blink {
-        0%, 100% { opacity: 1; }
-        50% { opacity: 0; }
-      }
+  .profile-pic-butcher {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-image: url('butcher.jpg');
+    background-size: cover;
+    margin-right: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
 
-      .paused {
-        animation: none;
-      }
+  .profile-pic-hughie {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-image: url('hughie.jpg');
+    background-size: cover;
+    margin-right: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
 
-      .try-this {
-        margin-top: 60px;
-        font-size: 1.5rem;
-        display: flex;
-        align-items: center;
-      }
+  .message-header {
+    display: flex;
+    align-items: center;
+  }
 
-      .try-this span {
-        color: #00b894;
-        font-weight: bold;
-        margin-right: 10px;
-      }
+  .message-name {
+    font-weight: bold;
+    margin-right: 5px;
+  }
 
-      .try-this-text {
-        color: #000000;
-        font-weight: bold;
-      }
-    </style>
+  .message-time {
+    opacity: 0.6;
+    font-size: 0.9rem;
+  }
+
+  .message-text {
+    font-size: 1rem;
+    color: #333333;
+    margin-top: 4px;
+  }
+
+  .explanation {
+    font-size: 1rem;
+    color: #555555;
+    margin-top: 20px;
+    max-width: 45%;
+    box-sizing: border-box;
+  }
+
+  .explanation-bold {
+    font-weight: bold;
+  }
+
+  .faded-text {
+    opacity: 0.75;
+  }
+
+  @media (max-width: 770px) {
+    .card, .explanation {
+      max-width: 100%;
+    }
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  .paused {
+    animation: none;
+  }
+
+  .try-this {
+    margin-top: 60px;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+  }
+
+  .try-this span {
+    color: #00b894;
+    font-weight: bold;
+    margin-right: 10px;
+  }
+
+  .try-this-text {
+    color: #000000;
+    font-weight: bold;
+  }
+</style>
+
   </head>
   <body>
     <div class="container">
