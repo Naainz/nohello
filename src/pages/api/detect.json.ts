@@ -23,7 +23,6 @@ export const GET: APIRoute = async ({ request }) => {
       return new Response('Unable to determine country from IP', { status: 500 });
     }
 
-    // Map country to locale
     const countryLocaleMap: Record<string, string> = {
       'US': 'en',
       'IT': 'it',
@@ -48,7 +47,7 @@ export const GET: APIRoute = async ({ request }) => {
     ];
 
     if (!availableLocales.includes(pathLocale)) {
-      const newUrl = `/${locale}${url.pathname}`;
+      const newUrl = `/${locale}/`;
       console.log(`Redirecting to ${newUrl} based on country ${data.country}`);
       return Response.redirect(newUrl, 302);
     }
