@@ -49,19 +49,13 @@ export const GET: APIRoute = async ({ request }) => {
       'en', 'it', 'jp', 'ko', 'ru', 'zh', 'fr', 'es', 'el', 'de', 'am'
     ];
 
-    let targetUrl;
+    let targetPath = locale === 'en' ? '/' : `/${locale}/`;
 
-    // If the locale is 'en', redirect to the root ('/')
-    if (locale === 'en') {
-      targetUrl = `${url.origin}/`;
-    } else {
-      targetUrl = `${url.origin}/${locale}/`;
-    }
-
-    // Prevent redirection loop by checking if the current path matches the target
-    if (!url.pathname.startsWith(targetUrl)) {
-      console.log(`Redirecting to ${targetUrl} based on country ${data.country}`);
-      return Response.redirect(targetUrl, 302);
+    // Only redirect if the current path doesn't match the intended target
+    if (!availableLocales.includes(pathLocale) || (pathLocale && !url.pathname.startsWith(targetPath))) {
+      const newUrl = `${url.origin}${targetPath}`;
+      console.log(`Redirecting to ${newUrl} based on country ${data.country}`);
+      return Response.redirect(newUrl, 302);
     }
 
     return new Response(null, { status: 204 });
