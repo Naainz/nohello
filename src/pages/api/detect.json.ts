@@ -41,13 +41,13 @@ export const GET: APIRoute = async ({ request }) => {
       'AM': 'am',
     };
 
-    const locale = countryLocaleMap[data.country] || 'en';
+    const locale = countryLocaleMap[data.country] || '/';
 
     const url = new URL(request.url);
     const pathLocale = url.pathname.split('/')[1];
 
     const availableLocales = [
-      'en', 'it', 'jp', 'ko', 'ru', 'zh', 'fr', 'es', 'el', 'de', 'am'
+      '/', 'it', 'jp', 'ko', 'ru', 'zh', 'fr', 'es', 'el', 'de', 'am'
     ];
 
     if (!availableLocales.includes(pathLocale)) {
