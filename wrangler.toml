@@ -1,5 +1,5 @@
 name = "nohello"
-main = "./dist/entry.worker.mjs"
+main = "dist/_worker.js"
 compatibility_date = "2025-06-15"
 
 [build]
