@@ -1,10 +1,6 @@
 name = "nohello"
-type = "javascript"
-main = "dist/worker.mjs"
+main = "./dist/entry.worker.mjs"
 compatibility_date = "2025-06-15"
 
 [build]
 command = "npm run build"
-
-[site]
-bucket = "./dist/client"
