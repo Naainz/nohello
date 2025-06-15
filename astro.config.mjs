@@ -1,9 +1,8 @@
 import { defineConfig } from 'astro/config';
-import staticAdapter from '@astrojs/static';
+import cloudflare from '@astrojs/cloudflare';
 
-// https://astro.build/config
 export default defineConfig({
   site: 'https://nh.naai.nz',
-  output: 'static',
-  adapter: staticAdapter()
+  output: 'server',
+  adapter: cloudflare(),
 });
