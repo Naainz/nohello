@@ -1,10 +1,9 @@
 import { defineConfig } from 'astro/config';
-
-import vercel from "@astrojs/vercel/serverless";
+import staticAdapter from '@astrojs/static';
 
 // https://astro.build/config
 export default defineConfig({
   site: 'https://nh.naai.nz',
-  output: 'server',
-  adapter: vercel()
+  output: 'static',
+  adapter: staticAdapter()
 });
